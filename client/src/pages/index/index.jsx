@@ -8,7 +8,7 @@ export default class Index extends Component {
     super(props);
     this.state = {
       packetList: [], //红包队列
-      packetNum: 200, //总共红包的数量
+      packetNum: 50, //总共红包的数量
     }
   }
 
@@ -19,8 +19,8 @@ export default class Index extends Component {
     for (let i = 0; i < this.state.packetNum; i++) {
       // 建立临时单个红包
       const packet = {
-        left: `${Math.floor(Math.random() * 95)}%`,
-        'animation-delay': `${Math.floor(Math.random() * 5)}s`
+        left: `${Math.floor(96 / 6 * (i % 6))}%`,
+        animationDelay: `${Math.floor(Math.random() * 50 * i)}ms`
       }
       packetList.push(packet);
       // 将生成的临时红包列表更新至页面数据，页面内进行渲染
