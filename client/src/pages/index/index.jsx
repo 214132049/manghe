@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Button, Text } from '@tarojs/components'
 import RedPacketPng from '@/assets/images/redpacket.png'
+import Server from '@/server'
 import './index.less'
 
 export default class Index extends Component {
@@ -9,6 +10,8 @@ export default class Index extends Component {
     this.state = {
       packetList: [], //红包队列
       packetNum: 50, //总共红包的数量
+      animationed: false,
+      code: ''
     }
   }
 
@@ -19,7 +22,7 @@ export default class Index extends Component {
     for (let i = 0; i < this.state.packetNum; i++) {
       // 建立临时单个红包
       const packet = {
-        left: `${Math.floor(96 / 6 * (i % 6))}%`,
+        left: `${Math.floor(100 / 6 * (i % 6))}%`,
         animationDelay: `${Math.floor(Math.random() * 50 * i)}ms`
       }
       packetList.push(packet);
@@ -33,23 +36,43 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
+  
+  onAnimationend () {
+    console.log(1)
+  }
+  
+  getCode () {
+    console.log(123)
+    Server('getCode').then(res => {
+      this.setState({
+        code: res.code
+      })
+    })
+  }
 
   render () {
-    const { packetList } = this.state;
+    const { packetList, code, animationed } = this.state;
     
     return (
       <View className='home-index'>
-        <View className='redPacket-box'>
-          {
-            packetList.length > 0 && packetList.map((style, index) => {
-              return <Image
-                className='red-packet'
-                key={index}
-                src={RedPacketPng}
-                style={style}
-              />
-            })
-          }
+        {
+          !animationed && <View className='redPacket-box'>
+            {
+              packetList.length > 0 && packetList.map((style, index) => {
+                return <Image
+                  className='red-packet'
+                  key={index}
+                  src={RedPacketPng}
+                  style={style}
+                  onAnimationend={this.onAnimationend}
+                />
+              })
+            }
+          </View>
+        }
+        <Text>{ code }</Text>
+        <View>
+          <Button onClick={this.getCode}>开宝盒<Text>(限时免费)</Text></Button>
         </View>
       </View>
     )
