@@ -16,10 +16,18 @@ export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidShow () { }
+  componentDidShow () { 
+  }
 
   componentDidHide () { }
   
+  onShareAppMessage () {
+    return {
+      title: '快来获取股票代码吧！',
+      path: '/page/index/index'
+    }
+  }
+
   getCode = () => {
     Server('getCode').then(res => {
       this.setState({
