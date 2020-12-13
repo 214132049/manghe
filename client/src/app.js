@@ -6,8 +6,12 @@ import './app.less'
 class App extends Component {
 
   componentDidMount () {
+    console.log(CLOUD_ENV)
     if (process.env.TARO_ENV === 'weapp') {
-      Taro.cloud.init()
+      Taro.cloud.init({
+        env: CLOUD_ENV,
+        traceUser: true
+      })
     }
   }
 
