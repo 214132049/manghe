@@ -7,7 +7,7 @@ class App extends Component {
 
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
-      const { miniProgram: { envVersion } } = wx.getAccountInfoSync()
+      const { miniProgram: { envVersion } } = Taro.getAccountInfoSync()
       let CLOUD_ENV = 'dev-4gfjzx0v3e4ac91a'
       if (envVersion === 'release') {
         CLOUD_ENV = 'prod-1gm8qrluf9fdc8bb'

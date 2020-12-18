@@ -16,10 +16,13 @@ export default class Index extends Component {
 
   componentWillMount () { }
 
-  componentDidShow () { 
-  }
+  componentDidShow () { }
 
-  componentDidHide () { }
+  componentDidHide () {
+    this.setState({
+      code: ''
+    })
+  }
   
   onShareAppMessage () {
     return {
