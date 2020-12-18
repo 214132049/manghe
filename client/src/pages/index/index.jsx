@@ -27,7 +27,7 @@ export default class Index extends Component {
   onShareAppMessage () {
     return {
       title: '快来获取股票代码吧！',
-      path: '/page/index/index'
+      path: '/pages/index/index'
     }
   }
 
