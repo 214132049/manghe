@@ -6,21 +6,32 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 const db = cloud.database()
-
+const MAX_LIMIT = 1
+const START_HOUR = 8 // 开始时间
+const END_HOUR = 17 // 结束时间
 exports.main = async (event, context) => {
   try {
-    const { list } = await db.collection('stock_tickers')
-      .aggregate()
-      .sample({
-        size: 1
-      })
-      .end()
-    if (list.length === 0) {
+    const countResult = await db.collection('stock_tickers').count()
+    const total = countResult.total
+    let offset = 0 // 第0条开始取
+    const currentHour = new Date().getHours()
+    if (currentHour <= START_HOUR) {
+      offset = 0 // START_HOUR前（含） 取第一个
+    } else if (currentHour > END_HOUR) {
+      offset = total - 1 // END_HOUR后取最后一个
+    } else {
+      offset = currentHour - START_HOUR // 每过1小时 获取下一个
+    }
+    const { data } = await db.collection('stock_tickers')
+      .skip(offset * MAX_LIMIT)
+      .limit(MAX_LIMIT)
+      .get()
+    if (data.length === 0) {
       throw new Error('获取为空')
     }
     return {
       code: 1,
-      data: list[0],
+      data: data[0],
       message: ''
     }
   } catch (e) {
