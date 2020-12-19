@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Image, Text } from '@tarojs/components'
+import { View, Image, Text, Checkbox, Label } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import BGPng from '@/assets/images/bg.jpg'
 import BtnPng from '@/assets/images/btn.png'
-import Btn2Png from '@/assets/images/btn-2.png'
+import ResBg from '@/assets/images/res-bg.png'
 import Server from '@/server'
 import './index.less'
 
@@ -10,7 +11,8 @@ export default class Index extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      code: ''
+      res: null,
+      checked: false
     }
   }
 
@@ -20,7 +22,7 @@ export default class Index extends Component {
 
   componentDidHide () {
     this.setState({
-      code: ''
+      res: null
     })
   }
   
@@ -32,30 +34,62 @@ export default class Index extends Component {
   }
 
   getCode = () => {
+    if (!this.state.checked) {
+      Taro.showToast({
+        title: '请阅读并同意《隐私条款》',
+        icon: 'none'
+      })
+      return
+    }
     Server('getCode').then(res => {
       this.setState({
-        code: res.code
+        res: res
       })
+    })
+  }
+  
+  viewLaw = () => {
+    Taro.navigateTo({
+      url: '/pages/law/index'
+    })
+  }
+  
+  setChecked = () => {
+    this.setState({
+      checked: true
     })
   }
 
   render () {
-    const { code } = this.state;
+    const { res, checked } = this.state;
     
     return (
       <View className='home-index'>
         <Image src={BGPng} className='bg' />
         <View className='main'>
           {
-            code ? <>
-                <Image src={Btn2Png} className='btn' />
-                <Text className='code'>{ code }</Text>
-              </>
-              : <>
+            res ? <View className='result'>
+                <Image src={ResBg} className='res-bg' />
+                <Text className='code'>代号 { res.code }</Text>
+                <Text className='name'>{ res.name }</Text>
+                <Text className='tip'>仅供娱乐参考, 不代表任何观点</Text>
+              </View>
+              : <View className='btn-box'>
+                <Text className='tip'>股市有风险，入市须谨慎</Text>
                 <Image src={BtnPng} onClick={this.getCode} className='btn shake' />
                 <Text className='tip'>限时免费</Text>
-              </>
+              </View>
           }
+        </View>
+        <View className='bottom'>
+          <View className='law-box'>
+            <Label onClick={this.setChecked}>
+              <Checkbox className='checkbox' value={checked} />
+              我已认真阅读，理解并同意
+            </Label>
+            <Text onClick={this.viewLaw} className='law'>《隐私条款》</Text>
+          </View>
+          <View className='company'>淘数科技</View>
         </View>
       </View>
     )

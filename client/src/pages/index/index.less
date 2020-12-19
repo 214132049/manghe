@@ -10,48 +10,111 @@
   .main {
     position: absolute;
     top: 43%;
-    left: 50%;
+    left: 51%;
     width: 90%;
     transform: translate3d(-50%, -50%, 0);
     z-index: 500;
     text-align: center;
-    .btn {
-      display: block;
-      width: 70%;
-      height: 100px;
-      margin: 0 auto 8px;
-      &.shake {
-        animation: shakeX 1s 1s both;
+    .btn-box {
+      .btn {
+        display: block;
+        width: 70%;
+        height: 100px;
+        margin: 0 auto 8px;
+        &.shake {
+          animation: shakeX 1s 1s both;
+        }
       }
-    }
-    @keyframes shakeX {
-      0%,to {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0)
-      }
+      @keyframes shakeX {
+        0%,to {
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0)
+        }
 
-      10%,30%,50%,70%,90% {
-        -webkit-transform: translate3d(-10px,0,0);
-        transform: translate3d(-10px,0,0)
-      }
+        10%,30%,50%,70%,90% {
+          -webkit-transform: translate3d(-10px,0,0);
+          transform: translate3d(-10px,0,0)
+        }
 
-      20%,40%,60%,80% {
-        -webkit-transform: translate3d(10px,0,0);
-        transform: translate3d(10px,0,0)
+        20%,40%,60%,80% {
+          -webkit-transform: translate3d(10px,0,0);
+          transform: translate3d(10px,0,0)
+        }
+      }
+      .tip {
+        display: block;
+        color: #fff;
+        font-size: 28px;
+        &:first-child {
+          margin-bottom: 20px;
+        }
       }
     }
-    .tip {
-      color: #fff;
-      font-size: 28px;
+    .result {
+      position: relative;
+      width: 80%;
+      height: 280px;
+      margin: 80px auto 0;
+      .res-bg {
+        width: 100%;
+        height: 100%;
+      }
+      .code {
+        position: absolute;
+        top: 170px;
+        left: 40px;
+        padding: 4px 12px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 28px;
+        border: 1px solid #fff;
+      }
+      .name {
+        position: absolute;
+        top: 60px;
+        right: 30px;
+        font-size: 36px;
+        color: rgb(100, 14, 9);
+      }
+      .tip {
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        color: rgb(100, 14, 9);
+      }
     }
-    .code {
-      position: absolute;
-      top: 24px;
-      left: 15%;
-      width: 70%;
-      color: #f2f000;
-      font-size: 48px;
-      letter-spacing: 4px;
+  }
+  .bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    view {
+      margin-bottom: 10px;
+    }
+    .checkbox {
+      transform: scale(0.7, 0.7)
+    }
+    .company {
+      display: inline-block;
+      width: 130px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 30px;
+      background: rgb(235, 73, 105);
+    }
+    .law-box {
+      text-indent: 1em;
+      .law {
+        text-decoration: underline;
+      }
     }
   }
 }

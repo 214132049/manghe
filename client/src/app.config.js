@@ -1,11 +1,12 @@
 export default {
   pages: [
-    'pages/index/index'
+    'pages/index/index',
+    'pages/law/index',
   ],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
+    navigationBarTitleText: '淘数',
     navigationBarTextStyle: 'black'
   },
   cloud: true

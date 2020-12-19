@@ -8,6 +8,9 @@ import Taro from '@tarojs/taro'
  */
 export default async function server (cloudFunctionName, params = {}) {
   try {
+    Taro.showLoading({
+      title: '数据获取中...'
+    })
     const { result } = await Taro.cloud.callFunction({
       name: cloudFunctionName,
       data: params
@@ -18,10 +21,12 @@ export default async function server (cloudFunctionName, params = {}) {
     }
     return data
   } catch (e) {
-    Taro.showToast({
+    await Taro.showToast({
       title: e.message || '获取数据失败！',
       icon: 'none'
     })
     return Promise.reject(e)
+  } finally {
+    Taro.hideLoading()
   }
 }
