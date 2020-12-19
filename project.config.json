@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "client/dist/",
-  "cloudfunctionRoot": "cloud/functions/",
+  "cloudfunctionRoot": "cloudFunctions/",
   "projectname": "manghe",
   "description": "盲盒",
   "appid": "wxe6c5f8d5f873bc0b",
