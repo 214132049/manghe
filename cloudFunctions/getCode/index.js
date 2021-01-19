@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
     const countResult = await db.collection('stock_tickers').count()
     const total = countResult.total
     let offset = 0 // 第0条开始取
-    const currentHour = new Date().getHours()
+    const currentHour = new Date(db.serverDate()).getHours()
     if (currentHour <= START_HOUR) {
       offset = 0 // START_HOUR前（含） 取第一个
     } else if (currentHour > END_HOUR) {
