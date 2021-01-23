@@ -1,0 +1,109 @@
+.home-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 160%;
+    height: 410px;
+    border-radius: 0 0 50% 50%;
+    padding: 0 30%;
+    margin-left: -30%;
+    background: linear-gradient(180deg,#5b7589 1%, #000000);
+    overflow: hidden;
+    z-index: 10;
+  }
+  .logo {
+    width: 180px;
+    height: 48px;
+    margin: 108px 0 0 36px;
+  }
+  .des {
+    margin: 32px 80px 18px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 21px;
+  }
+  .bg {
+    position: relative;
+    .img {
+      display: block;
+      width: 692px;
+      height: 181px;
+      margin: 0 auto;
+    }
+    .btn {
+      position: absolute;
+      width: 220px;
+      height: 56px;
+      right: 78px;
+      top: 36px;
+    }
+  }
+  &-main {
+    height: 100%;
+    overflow: hidden;
+    .at-tabs--vertical {
+      .at-tabs__header {
+        padding-top: 440px;
+        padding-bottom: 60px;
+        .at-tabs__item {
+          box-sizing: border-box;
+          font-size: 24px;
+          height: 80px;
+          line-height: 80px;
+        }
+        .at-tabs__item--active {
+          background: linear-gradient(270deg,#ffffff, #bed8f1);
+        }
+      }
+      .at-tabs__item-underline {
+        left: 0;
+        width: 6px;
+        background: #41668c;
+      }
+      .at-tabs__body {
+        .at-tabs__underline {
+          display: none;
+        }
+        .at-tabs-pane--vertical {
+          box-sizing: border-box;
+          padding-top: 440px;
+          background: #f1f1f1;
+          height: 100%
+        }
+        .at-grid-item {
+          height: 200px;
+          margin-bottom: 54px;
+        }
+        .content-inner__icon {
+          padding: 28px;
+          background: #ffffff;
+          border: 1PX solid #bcd2e3;
+          border-radius: 18px;
+        }
+        .content-inner__text {
+          color: #000;
+          font-weight: 500;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  .tips {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 54px;
+    background: #fff3d7;
+    color: #ff9d00;
+    line-height: 54px;
+    text-align: center;
+    z-index: 10;
+    font-size: 20px;
+  }
+}

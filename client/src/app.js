@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 
-import './app.less'
+import './app.scss'
 
 class App extends Component {
 

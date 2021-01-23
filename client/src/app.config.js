@@ -1,7 +1,10 @@
 export default {
   pages: [
-    'pages/index/index',
-    'pages/law/index',
+    'pages/home/index',
+    'pages/list/index',
+    'pages/group/index',
+    'pages/detail/index',
+    'pages/law/index'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -12,6 +15,7 @@ export default {
   tabBar: {
     selectedColor: '#ff9d00',
     color: '#999999',
+    borderStyle: 'white',
     list: [
       {
         text: '盲盒商城',
@@ -22,7 +26,7 @@ export default {
       {
         text: '龙虎榜',
         pagePath: 'pages/list/index',
-        iconPath: './assets/images/订单@2x.png',
+        iconPath: './assets/images/订单-灰@2x.png',
         selectedIconPath: './assets/images/订单-点击@2x.png'
       },
       {

@@ -32,7 +32,7 @@ exports.main = async (event, context) => {
     return {
       code: 1,
       data: data[0],
-      message: ''
+      message: '获取成功'
     }
   } catch (e) {
     return {

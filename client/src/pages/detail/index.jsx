@@ -5,9 +5,9 @@ import BGPng from '@/assets/images/bg.jpg'
 import BtnPng from '@/assets/images/btn.png'
 import ResBg from '@/assets/images/res-bg.png'
 import Server from '@/server'
-import './index.less'
+import './index.scss'
 
-export default class Index extends Component {
+export default class DetailIndex extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -29,7 +29,7 @@ export default class Index extends Component {
   onShareAppMessage () {
     return {
       title: '快来获取股票代码吧！',
-      path: '/pages/index/index'
+      path: '/pages/detail/detail'
     }
   }
 
@@ -50,7 +50,7 @@ export default class Index extends Component {
   
   viewLaw = () => {
     Taro.navigateTo({
-      url: '/pages/law/index'
+      url: '/pages/law/detail'
     })
   }
   

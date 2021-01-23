@@ -1,6 +1,6 @@
 import React  from 'react'
 import { View } from '@tarojs/components'
-import './index.less'
+import './index.scss'
 
 export default function lawIndex () {
   return (
