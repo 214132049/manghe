@@ -60,7 +60,7 @@ export default function HomeIndex() {
 	
 	const jumpPage = () => {
 		Taro.navigateTo({
-			url: '/pages/detail/index'
+			url: '/pages/detail/index?top=5'
 		})
 	}
 	

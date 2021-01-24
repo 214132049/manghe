@@ -41,7 +41,10 @@ export default class DetailIndex extends Component {
       })
       return
     }
-    Server('getCode').then(res => {
+    const top = Taro.getCurrentInstance().router.params.top
+    Server('getCode', {
+      top: top || -1
+    }).then(res => {
       this.setState({
         res: res
       })
