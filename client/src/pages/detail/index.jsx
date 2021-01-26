@@ -41,9 +41,10 @@ export default class DetailIndex extends Component {
       })
       return
     }
-    const top = Taro.getCurrentInstance().router.params.top
+    const {top, productId} = Taro.getCurrentInstance().router.params
     Server('getCode', {
-      top: top || -1
+      top: top || 10,
+      productId
     }).then(res => {
       this.setState({
         res: res

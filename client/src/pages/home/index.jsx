@@ -1,12 +1,11 @@
 import React, { useState, useEffect }  from 'react'
 import Taro from '@tarojs/taro'
-import {Image, Text, View} from '@tarojs/components'
+import {Image, Navigator, Text, View} from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtGrid } from 'taro-ui'
 
 import LogoPng from '@/assets/images/股票盲盒@2x.png'
 import BgPng from '@/assets/images/编组5@2x.png'
 import BtnPng from '@/assets/images/编组3@2x.png'
-import Picon1 from '@/assets/images/p-icon1.png'
 import Server from '@/server'
 
 import './index.scss'
@@ -41,11 +40,13 @@ export default function HomeIndex() {
 	}
 	
 	const formatProducts = (products) => {
-		return products.map(v => {
+		return products.sort((a, b) => {
+			return a - b > 0
+		}).map(v => {
 			return {
 				value: v.productName,
 				id: v.productId,
-				image: Picon1
+				image: v.iconUrl
 			}
 		})
 	}
@@ -54,13 +55,9 @@ export default function HomeIndex() {
 		setCurrent(index)
 	}
 	
-	const gridItemClick = () => {
-		jumpPage()
-	}
-	
-	const jumpPage = () => {
+	const gridItemClick = (item) => {
 		Taro.navigateTo({
-			url: '/pages/detail/index?top=5'
+			url: `/pages/detail/index?top=5&productId=${item.id}`
 		})
 	}
 	
@@ -73,7 +70,9 @@ export default function HomeIndex() {
 				</View>
 				<View className='bg'>
 					<Image className='img' src={BgPng} />
-					<Image className='btn' src={BtnPng} onClick={jumpPage} />
+					<Navigator url='/pages/detail/index?productId=101'>
+						<Image className='btn' src={BtnPng} />
+					</Navigator>
 				</View>
 			</View>
 		</View>
