@@ -86,13 +86,15 @@ export default class DetailIndex extends Component {
           }
         </View>
         <View className='bottom'>
-          <View className='law-box'>
-            <Label onClick={this.setChecked}>
-              <Checkbox className='checkbox' value={checked} />
-              我已认真阅读，理解并同意
-            </Label>
-            <Text onClick={this.viewLaw} className='law'>《隐私条款》</Text>
-          </View>
+          {
+            !res ? <View className='law-box'>
+              <Label onClick={this.setChecked}>
+                <Checkbox className='checkbox' value={checked} />
+                我已认真阅读，理解并同意
+              </Label>
+              <Text onClick={this.viewLaw} className='law'>《隐私条款》</Text>
+            </View> : ''
+          }
           <View className='company'>淘数科技</View>
         </View>
       </View>

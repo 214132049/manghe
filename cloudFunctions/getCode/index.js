@@ -16,15 +16,14 @@ exports.main = async (event, context) => {
   try {
     // 只从top中获取
     const {top, productId} = event
-    console.log(top, productId)
     const queryCondition = {}
     if (top) {
-      queryCondition.top = _.lte(top || 10)
+      queryCondition.top = _.lte(+top)
     }
     if (!productId) {
       throw new Error('参数错误')
     }
-    queryCondition.productId = _.eq(productId)
+    queryCondition.productId = _.eq(+productId)
     const filterColl = db.collection('stock_tickers').where(queryCondition)
     // 过滤的总个数
     const countResult = await filterColl.count()
@@ -54,6 +53,7 @@ exports.main = async (event, context) => {
       message: '获取成功'
     }
   } catch (e) {
+    console.log(e)
     const message = e.message.indexOf('errCode') > -1 ? '服务器错误' : e.message
     return {
       code: -1,

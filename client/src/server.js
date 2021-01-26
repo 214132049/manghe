@@ -23,7 +23,8 @@ export default async function server (cloudFunctionName, params = {}) {
   } catch (e) {
     await Taro.showToast({
       title: e.message || '获取数据失败！',
-      icon: 'none'
+      icon: 'none',
+      duration: 3000
     })
     return Promise.reject(e)
   } finally {
